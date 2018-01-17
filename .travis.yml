@@ -22,4 +22,28 @@ before_script:
 - npm install
 
 script:
+- ng test --single-run
 - ng build --prod --base-href ./ --no-aot
+
+
+after_success:
+- cd dist
+- zip -r ../tmp/tradeapp.zip ./
+- echo "zipped and saved to ./tmp/tradeapp.zip"
+- cd ..
+
+# delete everything currently in webhosting module
+- curl -X DELETE \
+  --user $CUSTOMER:$PASSWORD \
+  https://epdemo.apiomat.enterprises/yambas/rest/web/SalesApp1/LIVE \
+  -v
+
+# post new build to webhosting module
+- curl -X POST \
+  --user $CUSTOMER:$PASSWORD \
+  https://epdemo.apiomat.enterprises/yambas/rest/web/SalesApp1/LIVE/ \
+  -H "x-apiomat-system: LIVE" \
+  --data-binary "@./tmp/tradeapp.zip" \
+  -v
+
+
