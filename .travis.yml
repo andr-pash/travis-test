@@ -27,11 +27,11 @@ script:
 
 
 after_success:
-  - |
-    cd dist
-    zip -r ../tmp/tradeapp.zip ./
-    echo "zipped and saved to ./tmp/tradeapp.zip"
-    cd ..
+  - cd dist
+  - pwd
+  - zip -r ../tmp/tradeapp.zip ./
+  - echo "zipped and saved to ./tmp/tradeapp.zip"
+  - cd ..
 
 # delete everything currently in webhosting module
   - |
