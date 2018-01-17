@@ -27,6 +27,7 @@ script:
 
 
 after_success:
+  - mkdir tmp
   - cd dist
   - pwd
   - zip -r ../tmp/tradeapp.zip ./
