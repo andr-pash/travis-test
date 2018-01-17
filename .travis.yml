@@ -38,15 +38,15 @@ after_success:
     curl -X DELETE \
     --user $CUSTOMER:$PASSWORD \
     https://epdemo.apiomat.enterprises/yambas/rest/web/SalesApp1/LIVE \ 
-    -v  
+    --verbose  
 
 # post new build to webhosting module
   - |
     curl -X POST \
     --user $CUSTOMER:$PASSWORD \
     https://epdemo.apiomat.enterprises/yambas/rest/web/SalesApp1/LIVE/ \ 
-    -H "x-apiomat-system: LIVE" \
+    --header "x-apiomat-system: LIVE" \
     --data-binary "@./tmp/tradeapp.zip" \
-    -v
+    --verbose
 
 
